@@ -1,0 +1,26 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Введите два числа:");
+        double x = in.nextDouble();
+        double z = in.nextDouble();
+        double res;
+        System.out.println("Выберите действие \n 1.Сложение \n 2.Вычитание \n 3.Умножение \n 4.Деление");
+        int action = in.nextInt();
+        if(action == 1)
+            res = x + z;
+        else if (action==2) {
+            res = x - z;
+        } else if (action == 3) {
+            res = x*z;
+        } else if (action == 4) {
+            res = x/z;
+
+        }
+        else {System.out.println("Выберите существующие действие!");
+        return;}
+        System.out.println("Резултат операции" + " " + res);
+    }
+
+}
