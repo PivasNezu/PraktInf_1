@@ -1,0 +1,107 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        boolean lockpick = false;
+        boolean fstArtOnFloor = true;
+        boolean scndArtOnFloor = true;
+        boolean trdArtOnFloor = true;
+        int countVent = 0;
+        int countArt = 0;
+        boolean boxKey = false;
+        boolean checkre = true;
+        Scanner in = new Scanner(System.in);
+        System.out.println("Очень интересная игра");
+        System.out.println("Вы просыпаетесь на полу из за адской боли в голове и ничего не помните, но ничего, за то вы теперь в каком то подвале \n Подожди, а как тебя вообше зовут?");
+        String name = in.nextLine();
+        System.out.println("Вот ты и вспомнил свое имя" + " " + name + " " + "или ты его просто придумал?!");
+        System.out.println("Не суть, теперь когда мы вспомнили имя, давай осмотримся!");
+        System.out.println("И вот что ты видишь: \n Дверь \n Кровать \n Ящик \n Вентиляция \n Тумбочка \n Статуя(Рядом с дверью)?!");
+        while (checkre) {
+            System.out.println("Давай подумаем что ты можешь сделать? \n 1.Открыть Дверь \n 2.Заглянуть под кровать \n 3. Открыть ящик \n 4. Пнуть вентиляцию \n 5.Осмотреть тумбочку \n 6.Подойти к статуе");
+            switch (in.nextInt()) {
+                case 1:
+                    if (lockpick) {
+                        System.out.println("Поздравляю, вы наконце то сбежали с этого подвала, но есть маленькая загвоздка, вы теперь в Саратове");
+                        checkre = false;
+                        break;
+                    } else {
+                        System.out.println("Вы дергаете дверь, но к сожалению она не поддается (ещё бы она открылась, Ага!)\n Вы предполагаете, что скорее всего что бы открыть эту дверь вам понадобится ключ или отмычка");
+                        break;
+                    }
+                case 2:
+                    if (fstArtOnFloor) {
+                        System.out.println("Вы решили заглянуть под кровать. \n Там вы находите пустую банку пива (Интересно, для чего она?), но как умный человек вы берете ее с собой");
+                        countArt++;
+                        fstArtOnFloor = false;
+                        System.out.println(name + " " + "вы нашли первый артефакт - Пустую Банку Пива (ПБП)");
+                        break;
+                    } else {
+                        System.out.println("Под кроватью вы больше ничего не находите, увы.");
+                        break;
+                    }
+                case 3:
+                    if (boxKey && lockpick == false) {
+                        System.out.println("Вы открываете ящик и видите... \n СКРЕПКА?!, ДЛЯ ЧЕГО ОНА МНЕ \n Говорите вы, и потом вспоминаете те самые фильмы и сериалы, где главный герой открывает двери с помощью скрепки");
+                        System.out.println(name + " " + "вы нашли скрепку, советую попробовать что нибудь открыть с ее помощью");
+                        lockpick = true;
+                        break;
+                    } else if (boxKey && lockpick) {
+                        System.out.println("Але, ты уже и так нашел самый важный предмет для этой игры, куда ты еще лезешь? УХОДИ!");
+                        break;
+                    } else if (boxKey == false) {
+                        System.out.println("А на ящике замок)))\n Подсказка: ищи ключ");
+                        break;
+                    }
+                case 4:
+                    if (countVent < 2) {
+                        System.out.println("Ты пнул вентеляцию, какой ты молодец, а домы ты тоже все свои вещи пинаешь? Ладно, продолжай, она вроде не такая прочная");
+                        countVent++;
+                        break;
+                    } else {
+                        if (scndArtOnFloor) {
+                            System.out.println("Ух ты, как неожиданно, вентиляция разбилась в щепки, да ты силач!\n Заглянув в нее ты видишь там пустую пачку кириешек");
+                            System.out.println("вот это да! \n Думаешь ты, и кладешь эту пачку себе в карман");
+                            System.out.println(name + " " + "нашел кириешки, ну, пустые кириешки! \n Второй артефакт найден");
+                            countArt++;
+                            scndArtOnFloor = false;
+                            break;
+                        } else {
+                            System.out.println("Кириешки - единственное что там было(");
+                            break;
+                        }
+                    }
+                case 5:
+                    if (trdArtOnFloor) {
+                        System.out.println("Ты подходишь и видишь на тумбочке \n Банковская карта?!");
+                        System.out.println(name + " " + "нашел банковскую карту Кузьмы Ивановича (Кто это?!) \n Вы нашли третий артефакт ");
+                        countArt++;
+                        trdArtOnFloor = false;
+
+                    } else {
+                        System.out.println("К сожалению, кроме карточки тут больше ничего нету");
+                        break;
+                    }
+                case 6:
+                    if (countArt != 3) {
+                        System.out.print("это ж даже не статую, а бюст ленина с отверстием на голове, копилка что ли? \n Не понимая говорите вы \n Осталось" + " ");
+                        System.out.print(3 - countArt);
+                        if (3 - countArt == 2 || 3-countArt == 3) {
+                            System.out.println(" " + "Артефакта");break;
+                        } else if (3 - countArt == 1) {
+                            System.out.println(" " + "Артефакт");break;
+                        }
+                    } else {
+                        System.out.println("Вы подошли к статуи и чудным образом все 3 артефакта вылетают из ваших карманов и летят прямиком в копилку-ленина \n После этого на пол падает ключ \n для чего же он может быть?!");
+                        boxKey = true;
+                        System.out.println(name + " " + " вы нашли ключ от коробки!");
+                        break;
+                    }
+                default:
+                    System.out.println("Выбери норм действие!");
+                    break;
+            }
+        }
+            System.out.println("После побега, вы стали жить в Саратове, ведь тут так красиво, особенно летающие пчолы!"); 
+    }
+}
+// Второе задание с мини-игрой
